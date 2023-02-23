@@ -1,16 +1,6 @@
-import { useState, useEffect } from "react";
-
-interface AttemptState {
-  inputValue: string;
-  disabled: boolean;
-  attempts: number;
-}
-
 interface AttemptProps {
-  id: number;
-  onNewValue: (value: string) => void;
-  submitRef: React.LegacyRef<HTMLButtonElement>;
   result: number[];
+  id: number;
 }
 
 const styles = {
@@ -18,8 +8,6 @@ const styles = {
     display: "flex",
     flexDirection: "column" as "column",
     alignItems: "center",
-    gap: "1rem",
-    margin: "1rem 0",
   },
   inputDiv: {
     display: "flex",
@@ -34,70 +22,61 @@ const styles = {
   },
 };
 
-const Attempt = ({ id, onNewValue, submitRef, result }: AttemptProps) => {
-  const [value, setValue] = useState<AttemptState["inputValue"]>("");
+const Attempt = ({ result, id }: AttemptProps) => {
+  // const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+  //   evt.preventDefault();
+  //   const data = setResponse(evt);
+  //   onNewValue(data);
+  // };
 
-  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-    onNewValue(value);
-    setValue("");
-  };
-
-  const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((value) => value + evt.target.value);
-  };
+  // const setResponse = (evt: React.FormEvent<HTMLFormElement>) => {
+  //   const form = evt.currentTarget;
+  //   const formData = new FormData(form);
+  //   const formValues = Object.fromEntries(formData.entries());
+  //   return Object.values(formValues).join("");
+  // };
 
   return (
-    <form onSubmit={handleSubmit} style={styles.form} id={JSON.stringify(id)}>
-      {/* <input type="hidden" name="value" value={value} /> */}
-      <p>{result}</p>
-      <div style={styles.inputDiv}>
-        <input
-          type="text"
-          name="letter-1"
-          id="letter-1"
-          maxLength={1}
-          onChange={handleChange}
-          style={styles.input}
-        />
-        <input
-          type="text"
-          name="letter-2"
-          id="letter-2"
-          maxLength={1}
-          onChange={handleChange}
-          style={styles.input}
-        />
-        <input
-          type="text"
-          name="letter-3"
-          id="letter-3"
-          maxLength={1}
-          onChange={handleChange}
-          style={styles.input}
-        />
-        <input
-          type="text"
-          name="letter-4"
-          id="letter-4"
-          maxLength={1}
-          onChange={handleChange}
-          style={styles.input}
-        />
-        <input
-          type="text"
-          name="letter-5"
-          id="letter-5"
-          maxLength={1}
-          onChange={handleChange}
-          style={styles.input}
-        />
-      </div>
-      <button
-        type="submit"
-        ref={submitRef}
-        style={{ display: "none" }}></button>
-    </form>
+    // <form onSubmit={handleSubmit} style={styles.form}>
+    // <div style={styles.inputDiv} id={JSON.stringify(id)}>
+    <>
+      {/* <p>{result}</p> */}
+      <input
+        type="text"
+        name="letter-1"
+        id={`${id}-letter-1`}
+        maxLength={1}
+        style={styles.input}
+      />
+      <input
+        type="text"
+        name="letter-2"
+        id={`${id}-letter-2`}
+        maxLength={1}
+        style={styles.input}
+      />
+      <input
+        type="text"
+        name="letter-3"
+        id={`${id}-letter-3`}
+        maxLength={1}
+        style={styles.input}
+      />
+      <input
+        type="text"
+        name="letter-4"
+        id={`${id}-letter-4`}
+        maxLength={1}
+        style={styles.input}
+      />
+      <input
+        type="text"
+        name="letter-5"
+        id={`${id}-letter-5`}
+        maxLength={1}
+        style={styles.input}
+      />
+    </>
   );
 };
 

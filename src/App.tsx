@@ -15,8 +15,8 @@ function App() {
       const { result, letters } = await getResult(value);
       setResult(result);
       setLetters(letters);
-      console.log("result::: ", result);
-      console.log("letters::: ", letters);
+      // console.log("result::: ", result);
+      // console.log("letters::: ", letters);
     } catch (e) {
       console.log("e::: ", e);
     }

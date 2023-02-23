@@ -3,7 +3,7 @@ import Attempt from "./Attempt";
 
 interface AttemptContainerState {
   values: string[];
-  activeInput: string;
+  attempt: number;
 }
 
 interface AttemptContainerProps {
@@ -21,32 +21,44 @@ const styles = {
 
 const AttemptContainer = ({ checkValue, result }: AttemptContainerProps) => {
   const [values, setValues] = useState<AttemptContainerState["values"]>([]);
-
+  const [attempt, setAttempt] = useState<AttemptContainerState["attempt"]>(0);
   const submitRef = useRef<HTMLButtonElement>(null);
 
   const handleNewValue = (value: string): void => {
     checkValue(value);
+    setAttempt((value) => value + 1);
     setValues([...values, value]);
   };
 
-  const handleSubmit = () => {
-    if (submitRef.current) {
-      submitRef.current.click();
-    }
+  const setResponse = (evt: React.FormEvent<HTMLFormElement>) => {
+    const form = evt.currentTarget;
+    const formData = new FormData(form);
+    const formValues = Object.fromEntries(formData.entries());
+    console.log("formValues::: ", formValues);
+    const word = Object.values(formValues).join("");
+    return word;
   };
 
+  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    const data = setResponse(evt);
+    handleNewValue(data);
+  };
+
+  const elements = [];
+  for (let i = 0; i < 6; i++) {
+    elements.push(<Attempt result={result} key={i} id={i} />);
+  }
+
   return (
-    <div style={styles.div}>
-      <Attempt
-        onNewValue={handleNewValue}
-        submitRef={submitRef}
-        result={result}
-        id={0}
-        key={0}
-      />
-      <button onClick={handleSubmit}>Enviar</button>
-      <p>{values}</p>
-    </div>
+    // <div style={styles.div}>
+    // {attempt}
+    <form onSubmit={handleSubmit} style={styles.div}>
+      {elements}
+      <button type="submit">Enviar</button>
+    </form>
+    // <p>{values}</p>
+    // </div>
   );
 };
 
