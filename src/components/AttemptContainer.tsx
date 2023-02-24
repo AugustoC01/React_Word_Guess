@@ -22,7 +22,7 @@ const styles = {
 const AttemptContainer = ({ checkValue, result }: AttemptContainerProps) => {
   const [values, setValues] = useState<AttemptContainerState["values"]>([]);
   const [attempt, setAttempt] = useState<AttemptContainerState["attempt"]>(0);
-  const submitRef = useRef<HTMLButtonElement>(null);
+  // const submitRef = useRef<HTMLButtonElement>(null);
 
   const handleNewValue = (value: string): void => {
     checkValue(value);
@@ -34,9 +34,10 @@ const AttemptContainer = ({ checkValue, result }: AttemptContainerProps) => {
     const form = evt.currentTarget;
     const formData = new FormData(form);
     const formValues = Object.fromEntries(formData.entries());
-    console.log("formValues::: ", formValues);
-    const word = Object.values(formValues).join("");
-    return word;
+    const values = Object.values(formValues).join("");
+    const res = values.slice(5 * attempt, 5 * attempt + 5);
+    console.log("res::: ", res);
+    return res;
   };
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {

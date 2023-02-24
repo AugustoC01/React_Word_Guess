@@ -40,41 +40,46 @@ const Attempt = ({ result, id }: AttemptProps) => {
     // <form onSubmit={handleSubmit} style={styles.form}>
     // <div style={styles.inputDiv} id={JSON.stringify(id)}>
     <>
-      {/* <p>{result}</p> */}
+      <p>{result}</p>
       <input
         type="text"
-        name="letter-1"
+        name={`${id}-letter-1`}
         id={`${id}-letter-1`}
         maxLength={1}
         style={styles.input}
+        value={id}
       />
       <input
         type="text"
-        name="letter-2"
+        name={`${id}-letter-2`}
         id={`${id}-letter-2`}
         maxLength={1}
         style={styles.input}
+        value={id}
       />
       <input
         type="text"
-        name="letter-3"
+        name={`${id}-letter-3`}
         id={`${id}-letter-3`}
         maxLength={1}
         style={styles.input}
+        value={id}
       />
       <input
         type="text"
-        name="letter-4"
+        name={`${id}-letter-4`}
         id={`${id}-letter-4`}
         maxLength={1}
         style={styles.input}
+        value={id}
       />
       <input
         type="text"
-        name="letter-5"
+        name={`${id}-letter-5`}
         id={`${id}-letter-5`}
         maxLength={1}
         style={styles.input}
+        value={id}
       />
     </>
   );
