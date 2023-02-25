@@ -1,0 +1,14 @@
+{
+  "editor.tabSize": 2,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.autoClosingQuotes": "always",
+  "prettier.bracketSameLine": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "logViewer.showStatusBarItemOnChange": true,
+  "errorLens.enabledDiagnosticLevels": ["error", "warning"],
+  "logViewer.watch": [],
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "js-console.ShowEncourageMessageOnStartup": false
+}
