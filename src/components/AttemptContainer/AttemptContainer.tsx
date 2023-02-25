@@ -15,11 +15,7 @@ interface AttemptContainerProps {
   // attempt: number;
 }
 
-const AttemptContainer = ({
-  checkValue,
-  result,
-}: // attempt,
-AttemptContainerProps) => {
+const AttemptContainer = ({ checkValue, result }: AttemptContainerProps) => {
   const [values, setValues] = useState<AttemptContainerState["values"]>([]);
   const [attempt, setAttempt] = useState<AttemptContainerState["attempt"]>(0);
   const [inputStyle, setInputStyle] = useState<
@@ -48,36 +44,15 @@ AttemptContainerProps) => {
     handleNewValue(data);
   };
 
-  const handleResult = (result: number[]) => {
-    let inputResult: inputStyles[];
-    // console.log("result::: ", result);
-    inputResult = result.map((value) => {
-      if (value === 1) return "correct";
-      else if (value === 0) return "maybe";
-      else return "incorrect";
-    });
-    console.log("inputResult::: ", inputResult);
-    return inputResult;
-    // console.log("inputResult::: ", inputResult);
-    // setInputStyle(inputResult);
-  };
-
-  const allStyles = [[], [], [], [], [], []];
-
   const inputs = new Array(6);
 
   return (
     <form onSubmit={handleSubmit}>
       {attempt}
-      {/* {elements} */}
       {[...inputs].map((value, index) => {
-        if (index === attempt - 1) {
-          return (
-            <Attempt key={index} id={index} style={handleResult(result)} />
-          );
-        } else {
-          return <Attempt key={index} id={index} style={inputStyle} />;
-        }
+        return (
+          <Attempt key={index} id={index} response={result} attempt={attempt} />
+        );
       })}
       <button type="submit">Enviar</button>
     </form>
