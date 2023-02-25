@@ -23,7 +23,7 @@ const Keyboard = ({ letters }: KeyboardProps) => {
   //   alphabeth.push(obj);
   // });
   let buttonList = letters.map((value, index) => {
-    if (value.status == -1) {
+    if (value.status === -1) {
       return (
         <button key={index} style={style.disabledBtn}>
           {value.letter}
