@@ -1,0 +1,23 @@
+.letters-container {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+/* INPUT STYLES */
+.initial {
+  width: 3rem;
+  height: 3rem;
+  font-size: 3rem;
+  text-align: center;
+  text-transform: capitalize;
+}
+.correct {
+  background-color: lightgreen;
+}
+.maybe {
+  background-color: yellow;
+}
+.incorrect {
+  background-color: grey;
+}
