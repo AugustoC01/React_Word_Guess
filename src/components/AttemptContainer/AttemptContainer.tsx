@@ -1,12 +1,10 @@
 import "./AttemptContainer.css";
 import { useState } from "react";
 import Attempt from "../Attempt/Attempt";
-import { inputStyles } from "../../types";
 
 interface AttemptContainerState {
   values: string[];
   attempt: number;
-  inputStyle: inputStyles[];
 }
 
 interface AttemptContainerProps {
@@ -17,10 +15,7 @@ interface AttemptContainerProps {
 
 const AttemptContainer = ({ checkValue, result }: AttemptContainerProps) => {
   const [values, setValues] = useState<AttemptContainerState["values"]>([]);
-  const [attempt, setAttempt] = useState<AttemptContainerState["attempt"]>(0);
-  const [inputStyle, setInputStyle] = useState<
-    AttemptContainerState["inputStyle"]
-  >([]);
+  const [attempt, setAttempt] = useState<AttemptContainerState["attempt"]>(-1);
 
   const handleNewValue = (value: string) => {
     checkValue(value);
@@ -33,9 +28,14 @@ const AttemptContainer = ({ checkValue, result }: AttemptContainerProps) => {
     const formData = new FormData(form);
     const formValues = Object.fromEntries(formData.entries());
     const values = Object.values(formValues).join("");
-    const res = values.slice(5 * attempt, 5 * attempt + 5);
-    console.log("res::: ", res);
-    return res;
+    console.log("values::: ", values);
+    console.log("attempt::: ", attempt);
+    if (attempt >= 0) {
+      const res = values.slice(5 * (attempt + 1));
+      console.log("res::: ", res);
+      return res;
+    }
+    return values;
   };
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
