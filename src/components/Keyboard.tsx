@@ -1,4 +1,5 @@
-import { AlphabetObject } from "../types";
+import useGameContext from "../Context/Context";
+import { LetterObject } from "../types";
 
 const style = {
   disabledBtn: {
@@ -6,23 +7,10 @@ const style = {
   },
 };
 
-// interface KeyboardState {
-//   lettersList: AlphabetObject;
-// }
+const Keyboard = () => {
+  const { letters } = useGameContext();
 
-interface KeyboardProps {
-  letters: AlphabetObject;
-}
-
-const Keyboard = ({ letters }: KeyboardProps) => {
-  // const [letters, setLetters] = useState([]);
-
-  // let alphabeth: {}[] = [];
-  // const lettersValue = Object.values(letters);
-  // lettersValue.forEach((obj) => {
-  //   alphabeth.push(obj);
-  // });
-  let buttonList = letters.map((value, index) => {
+  let buttonList = letters.map((value: LetterObject, index: number) => {
     if (value.status === -1) {
       return (
         <button key={index} style={style.disabledBtn}>

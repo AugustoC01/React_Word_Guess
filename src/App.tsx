@@ -1,15 +1,13 @@
-import { useState } from "react";
-import { AlphabetObject } from "./types";
 import { getResult } from "./services/getResult";
-import alphabet from "./Mock/alphabet.json";
+import { GameContextProvider } from "./Context/Context";
 import AttemptContainer from "./components/AttemptContainer/AttemptContainer";
 import Keyboard from "./components/Keyboard";
 import Word from "./components/Word";
+import useGameContext from "./Context/Context";
+import { GameContextType } from "./Context/types";
 
 function App() {
-  const [result, setResult] = useState<[]>([]);
-  // const [attempt, setAttempt] = useState<number>(0);
-  const [letters, setLetters] = useState<AlphabetObject>(alphabet);
+  const { setResult, setLetters } = useGameContext() as GameContextType;
 
   const checkValue = async (value: string) => {
     try {
@@ -25,15 +23,11 @@ function App() {
   };
 
   return (
-    <div>
+    <GameContextProvider>
       <Word />
-      <AttemptContainer
-        checkValue={checkValue}
-        result={result}
-        // attempt={attempt}
-      />
-      <Keyboard letters={letters} />
-    </div>
+      <AttemptContainer checkValue={checkValue} />
+      <Keyboard />
+    </GameContextProvider>
   );
 }
 
